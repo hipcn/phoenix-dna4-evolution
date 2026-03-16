@@ -84,6 +84,14 @@ python -X utf8 apply_route_policy.py
 
 预期结果：生成 `route_policy.env`、`apply_route_policy.ps1`、`route_policy_summary.json`。
 
+可选：将产物统一写入 `out/`（保持仓库根目录整洁）：
+
+```bash
+python -X utf8 value_case.py --input-dir . --output-dir out
+python -X utf8 render_gate_svg.py --input-dir . --output-dir out
+python -X utf8 apply_route_policy.py --input-dir . --output-dir out
+```
+
 ## 目录结构
 
 ```text

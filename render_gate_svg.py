@@ -1,4 +1,5 @@
 import json
+import argparse
 from pathlib import Path
 
 
@@ -18,7 +19,16 @@ def esc(text: str):
 
 
 def main():
-    gate_path = Path("benchmark_application_gate.json")
+    parser = argparse.ArgumentParser(description="Render gate snapshot SVG from benchmark_application_gate.json")
+    parser.add_argument("--input-dir", default=".", help="Directory containing benchmark_application_gate.json")
+    parser.add_argument("--output-dir", default=".", help="Directory to write gate_snapshot.svg")
+    args = parser.parse_args()
+
+    input_dir = Path(args.input_dir)
+    output_dir = Path(args.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    gate_path = input_dir / "benchmark_application_gate.json"
     if not gate_path.exists():
         raise FileNotFoundError("benchmark_application_gate.json not found")
 
@@ -81,7 +91,7 @@ def main():
     lines.append(f'<text x="36" y="{height - 24}" fill="{overall_color}" font-size="16" font-family="Segoe UI, Arial">Overall Gate: {overall}</text>')
     lines.append("</svg>")
 
-    svg_path = Path("gate_snapshot.svg")
+    svg_path = output_dir / "gate_snapshot.svg"
     svg_path.write_text("\n".join(lines), encoding="utf-8")
     print("✅ gate_snapshot.svg generated")
 

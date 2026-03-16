@@ -1,4 +1,5 @@
 import json
+import argparse
 from pathlib import Path
 from datetime import datetime
 
@@ -16,9 +17,17 @@ def pick_check(checks, name):
 
 
 def main():
-    root = Path(".")
-    gate_path = root / "benchmark_application_gate.json"
-    route_path = root / "benchmark_route_policy.json"
+    parser = argparse.ArgumentParser(description="Generate business value snapshot from benchmark outputs")
+    parser.add_argument("--input-dir", default=".", help="Directory containing benchmark_application_gate.json")
+    parser.add_argument("--output-dir", default=".", help="Directory to write business_value_case.json")
+    args = parser.parse_args()
+
+    input_dir = Path(args.input_dir)
+    output_dir = Path(args.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    gate_path = input_dir / "benchmark_application_gate.json"
+    route_path = input_dir / "benchmark_route_policy.json"
 
     if not gate_path.exists():
         raise FileNotFoundError("benchmark_application_gate.json not found")
@@ -54,7 +63,7 @@ def main():
         "positioning": "在不降低Top1准确率的前提下，提供显著吞吐提升，并通过门禁校验"
     }
 
-    output_path = root / "business_value_case.json"
+    output_path = output_dir / "business_value_case.json"
     with output_path.open("w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
 

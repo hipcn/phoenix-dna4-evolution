@@ -1,4 +1,5 @@
 import json
+import argparse
 from pathlib import Path
 
 
@@ -27,8 +28,17 @@ def build_policy_from_evolution(path: Path):
 
 
 def main():
-    policy_path = Path("benchmark_route_policy.json")
-    evolution_path = Path("benchmark_evolution_report.json")
+    parser = argparse.ArgumentParser(description="Generate runtime route policy artifacts")
+    parser.add_argument("--input-dir", default=".", help="Directory containing benchmark route/evolution reports")
+    parser.add_argument("--output-dir", default=".", help="Directory to write route policy artifacts")
+    args = parser.parse_args()
+
+    input_dir = Path(args.input_dir)
+    output_dir = Path(args.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    policy_path = input_dir / "benchmark_route_policy.json"
+    evolution_path = input_dir / "benchmark_evolution_report.json"
 
     if policy_path.exists():
         policy = load_policy(policy_path)
@@ -58,8 +68,8 @@ def main():
         ]
     )
 
-    Path("route_policy.env").write_text(env_payload, encoding="utf-8")
-    Path("apply_route_policy.ps1").write_text(ps1_payload, encoding="utf-8")
+    Path(output_dir / "route_policy.env").write_text(env_payload, encoding="utf-8")
+    Path(output_dir / "apply_route_policy.ps1").write_text(ps1_payload, encoding="utf-8")
 
     summary = {
         "provider": provider,
@@ -68,7 +78,7 @@ def main():
         "source": str(policy.get("source", "benchmark_route_policy.json")),
         "artifacts": ["route_policy.env", "apply_route_policy.ps1"]
     }
-    Path("route_policy_summary.json").write_text(
+    Path(output_dir / "route_policy_summary.json").write_text(
         json.dumps(summary, ensure_ascii=False, indent=2),
         encoding="utf-8"
     )

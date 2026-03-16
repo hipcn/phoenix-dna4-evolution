@@ -91,6 +91,14 @@ Expected outputs:
 - `apply_route_policy.ps1`
 - `route_policy_summary.json`
 
+Optional: write artifacts into `out/` to keep repository root clean:
+
+```bash
+python -X utf8 value_case.py --input-dir . --output-dir out
+python -X utf8 render_gate_svg.py --input-dir . --output-dir out
+python -X utf8 apply_route_policy.py --input-dir . --output-dir out
+```
+
 ## Structure
 
 ```text
