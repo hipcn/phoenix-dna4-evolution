@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-03-16 19:40:32",
+  "source": "benchmark_evolution_report.json",
+  "genome": "AGATGGATACCTTACCTATGCCTTAAGTCTCGGCCCAGCACAGGTGATTCAGGCTTCGCCGATC",
+  "peak_generation": 5,
+  "peak_fitness": 0.911508923050522,
+  "route": {
+    "provider": "ollama",
+    "model": "qwen2.5:latest"
+  }
+}

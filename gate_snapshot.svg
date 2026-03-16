@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="360" viewBox="0 0 980 360">
+<rect x="0" y="0" width="100%" height="100%" fill="#0b1020"/>
+<text x="36" y="42" fill="#f2f5ff" font-size="24" font-family="Segoe UI, Arial">PhoenixDNA Gate Snapshot</text>
+<text x="36" y="86" fill="#c8d1ee" font-size="14" font-family="Segoe UI, Arial">throughput_speedup_vs_float_cosine</text>
+<rect x="260" y="70" width="660" height="22" rx="6" fill="#1f2a44"/>
+<rect x="260" y="70" width="660.00" height="22" rx="6" fill="#35d07f"/>
+<line x1="585.59" y1="64" x2="585.59" y2="98" stroke="#ffcc66" stroke-width="2"/>
+<text x="260" y="114" fill="#9eb0df" font-size="12" font-family="Consolas, monospace">actual=10.1355  threshold=5.0000  op=&gt;=</text>
+<text x="932" y="86" fill="#35d07f" font-size="13" font-family="Segoe UI, Arial">PASS</text>
+<text x="36" y="164" fill="#c8d1ee" font-size="14" font-family="Segoe UI, Arial">top1_non_inferiority_vs_float_cosine</text>
+<rect x="260" y="148" width="660" height="22" rx="6" fill="#1f2a44"/>
+<rect x="260" y="148" width="0.00" height="22" rx="6" fill="#35d07f"/>
+<line x1="920.00" y1="142" x2="920.00" y2="176" stroke="#ff6b6b" stroke-width="2"/>
+<text x="260" y="192" fill="#9eb0df" font-size="12" font-family="Consolas, monospace">actual=0.0000  threshold=0.0200  op=&lt;=</text>
+<text x="932" y="164" fill="#35d07f" font-size="13" font-family="Segoe UI, Arial">PASS</text>
+<text x="36" y="242" fill="#c8d1ee" font-size="14" font-family="Segoe UI, Arial">stress_margin_gain_penalty_-1.0_vs_0.0</text>
+<rect x="260" y="226" width="660" height="22" rx="6" fill="#1f2a44"/>
+<rect x="260" y="226" width="660.00" height="22" rx="6" fill="#35d07f"/>
+<line x1="666.15" y1="220" x2="666.15" y2="254" stroke="#ffcc66" stroke-width="2"/>
+<text x="260" y="270" fill="#9eb0df" font-size="12" font-family="Consolas, monospace">actual=0.8125  threshold=0.5000  op=&gt;=</text>
+<text x="932" y="242" fill="#35d07f" font-size="13" font-family="Segoe UI, Arial">PASS</text>
+<text x="36" y="336" fill="#35d07f" font-size="16" font-family="Segoe UI, Arial">Overall Gate: PASS</text>
+</svg>

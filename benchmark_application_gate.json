@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-03-16 19:03:41",
+  "overall_passed": true,
+  "thresholds": {
+    "throughput_min_speedup": 5.0,
+    "max_top1_drop": 0.02,
+    "min_margin_gain": 0.5
+  },
+  "checks": [
+    {
+      "name": "throughput_speedup_vs_float_cosine",
+      "actual": 10.135500154983836,
+      "threshold": 5.0,
+      "operator": ">=",
+      "passed": true
+    },
+    {
+      "name": "top1_non_inferiority_vs_float_cosine",
+      "actual": 0.0,
+      "threshold": 0.02,
+      "operator": "<=",
+      "passed": true
+    },
+    {
+      "name": "stress_margin_gain_penalty_-1.0_vs_0.0",
+      "actual": 0.8125,
+      "threshold": 0.5,
+      "operator": ">=",
+      "passed": true
+    }
+  ],
+  "evidence": {
+    "dna_complementary": {
+      "top1_accuracy_mean": 0.8125,
+      "top1_accuracy_std": 0.0,
+      "mrr_mean": 0.90625,
+      "mrr_std": 0.0,
+      "throughput_mean": 190185.8608687951,
+      "throughput_std": 0.0,
+      "latency_ms_mean": 10.768413543701172,
+      "latency_ms_std": 0.0
+    },
+    "float_cosine": {
+      "top1_accuracy_mean": 0.8125,
+      "top1_accuracy_std": 0.0,
+      "mrr_mean": 0.90625,
+      "mrr_std": 0.0,
+      "throughput_mean": 18764.32913626633,
+      "throughput_std": 0.0,
+      "latency_ms_mean": 109.14325714111328,
+      "latency_ms_std": 0.0
+    },
+    "stress_margin_penalty_0.0": {
+      "margin_mean": 0.8125,
+      "margin_std": 0.0
+    },
+    "stress_margin_penalty_-1.0": {
+      "margin_mean": 1.625,
+      "margin_std": 0.0
+    }
+  }
+}

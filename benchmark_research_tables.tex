@@ -1,0 +1,43 @@
+\begin{table}[t]
+\centering
+\caption{Baseline Comparison}
+\begin{tabular}{lcccc}
+\hline
+Method & Top1 & MRR & Throughput (/s) & Latency (ms) \\
+\hline
+dna_exact & 0.812$\pm$0.000 & 0.906$\pm$0.000 & 453486$\pm$0 & 4.52$\pm$0.00 \\
+dna_complementary & 0.812$\pm$0.000 & 0.906$\pm$0.000 & 190186$\pm$0 & 10.77$\pm$0.00 \\
+dna_distance & 0.812$\pm$0.000 & 0.906$\pm$0.000 & 238325$\pm$0 & 8.59$\pm$0.00 \\
+float_cosine & 0.812$\pm$0.000 & 0.906$\pm$0.000 & 18764$\pm$0 & 109.14$\pm$0.00 \\
+float_l2 & 0.812$\pm$0.000 & 0.906$\pm$0.000 & 20103$\pm$0 & 101.87$\pm$0.00 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Complementary Penalty Ablation}
+\begin{tabular}{lcccc}
+\hline
+Ablation & Top1 & MRR & Throughput (/s) & Latency (ms) \\
+\hline
+penalty_0.0 & 0.812$\pm$0.000 & 0.906$\pm$0.000 & 208666$\pm$0 & 9.81$\pm$0.00 \\
+penalty_-0.5 & 0.812$\pm$0.000 & 0.906$\pm$0.000 & 200540$\pm$0 & 10.21$\pm$0.00 \\
+penalty_-1.0 & 0.812$\pm$0.000 & 0.906$\pm$0.000 & 177167$\pm$0 & 11.56$\pm$0.00 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Complementary Stress Test}
+\begin{tabular}{lccccc}
+\hline
+Ablation & Top1 & MRR & Throughput (/s) & Latency (ms) & Margin \\
+\hline
+penalty_0.0 & 0.875 & 0.938 & 218351 & 9.38 & 0.812$\pm$0.000 \\
+penalty_-0.5 & 0.875 & 0.938 & 221493 & 9.25 & 1.219$\pm$0.000 \\
+penalty_-1.0 & 0.875 & 0.938 & 187443 & 10.93 & 1.625$\pm$0.000 \\
+\hline
+\end{tabular}
+\end{table}

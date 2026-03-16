@@ -1,0 +1,132 @@
+{
+  "timestamp": "2026-03-16 19:03:41",
+  "config": {
+    "sample_size": 32,
+    "mutation_rate": 0.1,
+    "repeats": 1,
+    "candidate_count": 64
+  },
+  "methods": {
+    "dna_exact": {
+      "top1_accuracy_mean": 0.8125,
+      "top1_accuracy_std": 0.0,
+      "mrr_mean": 0.90625,
+      "mrr_std": 0.0,
+      "throughput_mean": 453486.1467638053,
+      "throughput_std": 0.0,
+      "latency_ms_mean": 4.516124725341797,
+      "latency_ms_std": 0.0
+    },
+    "dna_complementary": {
+      "top1_accuracy_mean": 0.8125,
+      "top1_accuracy_std": 0.0,
+      "mrr_mean": 0.90625,
+      "mrr_std": 0.0,
+      "throughput_mean": 190185.8608687951,
+      "throughput_std": 0.0,
+      "latency_ms_mean": 10.768413543701172,
+      "latency_ms_std": 0.0
+    },
+    "dna_distance": {
+      "top1_accuracy_mean": 0.8125,
+      "top1_accuracy_std": 0.0,
+      "mrr_mean": 0.90625,
+      "mrr_std": 0.0,
+      "throughput_mean": 238324.628693505,
+      "throughput_std": 0.0,
+      "latency_ms_mean": 8.593320846557617,
+      "latency_ms_std": 0.0
+    },
+    "float_cosine": {
+      "top1_accuracy_mean": 0.8125,
+      "top1_accuracy_std": 0.0,
+      "mrr_mean": 0.90625,
+      "mrr_std": 0.0,
+      "throughput_mean": 18764.32913626633,
+      "throughput_std": 0.0,
+      "latency_ms_mean": 109.14325714111328,
+      "latency_ms_std": 0.0
+    },
+    "float_l2": {
+      "top1_accuracy_mean": 0.8125,
+      "top1_accuracy_std": 0.0,
+      "mrr_mean": 0.90625,
+      "mrr_std": 0.0,
+      "throughput_mean": 20103.477745584925,
+      "throughput_std": 0.0,
+      "latency_ms_mean": 101.87292098999023,
+      "latency_ms_std": 0.0
+    }
+  },
+  "ablations": {
+    "penalty_0.0": {
+      "top1_accuracy_mean": 0.8125,
+      "top1_accuracy_std": 0.0,
+      "mrr_mean": 0.90625,
+      "mrr_std": 0.0,
+      "throughput_mean": 208665.75795559442,
+      "throughput_std": 0.0,
+      "latency_ms_mean": 9.814739227294922,
+      "latency_ms_std": 0.0
+    },
+    "penalty_-0.5": {
+      "top1_accuracy_mean": 0.8125,
+      "top1_accuracy_std": 0.0,
+      "mrr_mean": 0.90625,
+      "mrr_std": 0.0,
+      "throughput_mean": 200540.09880001866,
+      "throughput_std": 0.0,
+      "latency_ms_mean": 10.212421417236328,
+      "latency_ms_std": 0.0
+    },
+    "penalty_-1.0": {
+      "top1_accuracy_mean": 0.8125,
+      "top1_accuracy_std": 0.0,
+      "mrr_mean": 0.90625,
+      "mrr_std": 0.0,
+      "throughput_mean": 177166.84731360213,
+      "throughput_std": 0.0,
+      "latency_ms_mean": 11.559724807739258,
+      "latency_ms_std": 0.0
+    }
+  },
+  "stress_test": {
+    "seed": 424242,
+    "sample_size": 32,
+    "stress_rate": 0.1,
+    "results": {
+      "penalty_0.0": {
+        "top1_accuracy": 0.875,
+        "mrr": 0.9375,
+        "throughput_per_sec": 218351.15892221656,
+        "elapsed_ms": 9.379386901855469
+      },
+      "penalty_-0.5": {
+        "top1_accuracy": 0.875,
+        "mrr": 0.9375,
+        "throughput_per_sec": 221492.821205714,
+        "elapsed_ms": 9.246349334716797
+      },
+      "penalty_-1.0": {
+        "top1_accuracy": 0.875,
+        "mrr": 0.9375,
+        "throughput_per_sec": 187442.65590154275,
+        "elapsed_ms": 10.926008224487305
+      }
+    },
+    "truth_vs_complement_margin": {
+      "penalty_0.0": {
+        "margin_mean": 0.8125,
+        "margin_std": 0.0
+      },
+      "penalty_-0.5": {
+        "margin_mean": 1.21875,
+        "margin_std": 0.0
+      },
+      "penalty_-1.0": {
+        "margin_mean": 1.625,
+        "margin_std": 0.0
+      }
+    }
+  }
+}

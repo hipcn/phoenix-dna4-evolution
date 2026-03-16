@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-03-16 19:40:32",
+  "overall_passed": true,
+  "business_case": {
+    "speedup_vs_baseline_x": 10.1355,
+    "latency_reduction_ratio": 0.9013,
+    "top1_drop_vs_baseline": 0.0,
+    "stress_margin_gain": 0.8125
+  },
+  "runtime_route": {
+    "provider": "ollama",
+    "model": "qwen2.5:latest"
+  },
+  "positioning": "在不降低Top1准确率的前提下，提供显著吞吐提升，并通过门禁校验"
+}

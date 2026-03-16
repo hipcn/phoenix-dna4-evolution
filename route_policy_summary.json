@@ -1,0 +1,10 @@
+{
+  "provider": "ollama",
+  "model": "qwen2.5:latest",
+  "genome": "AGATGGATACCTTACCTATGCCTTAAGTCTCGGCCCAGCACAGGTGATTCAGGCTTCGCCGATC",
+  "source": "benchmark_evolution_report.json",
+  "artifacts": [
+    "route_policy.env",
+    "apply_route_policy.ps1"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-03-16 19:40:32",
+  "results": [
+    {
+      "name": "Evolution Selection",
+      "scenario": "evolutionary_drift",
+      "num_entries": 6,
+      "total_time_ms": 6916.734218597412,
+      "memory_peak_mb": 41.234375,
+      "memory_baseline_mb": 41.05078125,
+      "memory_delta_mb": 0.18359375,
+      "throughput_per_sec": 0.8674614074178914,
+      "accuracy_percent": 87.5,
+      "notes": "fitness Δ=0.038, gate pass=91.67%"
+    }
+  ],
+  "summary": {
+    "total_benchmarks": 1,
+    "avg_throughput": 0.8674614074178914,
+    "avg_memory_delta": 0.18359375
+  }
+}
