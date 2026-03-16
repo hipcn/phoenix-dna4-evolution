@@ -33,6 +33,48 @@ Result cards:
 - `business_value_case.json`: business impact snapshot
 - `gate_snapshot.svg`: visual gate evidence
 
+## Concrete Use Cases (Copy-Paste Ready)
+
+### Use Case 1: Pre-release quality gate (prevent bad rollout)
+
+Use this when you want an automatic go/no-go check before every release.
+
+```bash
+python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternary_sample.json --limit 64 --sample-size 32 --mutation-rate 0.1 --repeats 1
+```
+
+You will see (real sample):
+- `Overall: PASS`
+- `throughput_speedup_vs_float_cosine 11.054933 >= 5.000000`
+- `top1_non_inferiority_vs_float_cosine 0.000000 <= 0.020000`
+
+### Use Case 2: Inject strategy into Lobster runtime (same day)
+
+Use this when Lobster is running and you only need deployable route artifacts.
+
+```bash
+python -X utf8 apply_route_policy.py
+```
+
+You will get (real sample):
+- `route_policy.env`
+- `route_policy_summary.json`
+- `Route: ollama/qwen2.5:latest`
+
+### Use Case 3: Show business value to stakeholders
+
+Use this for PRs, weekly reports, and review meetings.
+
+```bash
+python -X utf8 value_case.py
+python -X utf8 render_gate_svg.py
+```
+
+You will get (real sample):
+- `Speedup: 11.0549x`
+- `Latency Reduction: 90.95%`
+- `gate_snapshot.svg` (ready for repo landing page or report decks)
+
 The project provides three capability layers:
 - **Research**: baselines, ablations, repeated statistics, and one-shot report generation.
 - **Gate**: hard pre-deployment checks that fail fast if quality is below threshold.

@@ -33,6 +33,48 @@ python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternar
 - `business_value_case.json`：业务价值快照
 - `gate_snapshot.svg`：可视化门禁证据图
 
+## 具体用例（直接照抄）
+
+### 用例 1：发布前门禁（防止劣化上线）
+
+适用：你每次发布前都想自动判断“这版策略能不能上”。
+
+```bash
+python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternary_sample.json --limit 64 --sample-size 32 --mutation-rate 0.1 --repeats 1
+```
+
+你会看到（真实样例）：
+- `Overall: PASS`
+- `throughput_speedup_vs_float_cosine 11.054933 >= 5.000000`
+- `top1_non_inferiority_vs_float_cosine 0.000000 <= 0.020000`
+
+### 用例 2：把策略接到大龙虾运行时（当天可落地）
+
+适用：你已经有大龙虾运行环境，只缺一份可注入的路由策略。
+
+```bash
+python -X utf8 apply_route_policy.py
+```
+
+你会得到（真实样例）：
+- `route_policy.env`
+- `route_policy_summary.json`
+- `Route: ollama/qwen2.5:latest`
+
+### 用例 3：给老板/团队看“这次优化到底值不值”
+
+适用：你需要 PR、周报、复盘会上的可读证据。
+
+```bash
+python -X utf8 value_case.py
+python -X utf8 render_gate_svg.py
+```
+
+你会得到（真实样例）：
+- `Speedup: 11.0549x`
+- `Latency Reduction: 90.95%`
+- `gate_snapshot.svg`（可直接贴在仓库首页或汇报文档）
+
 项目提供三层能力：
 - **Research**：基线、消融、重复统计，一次性产出报告与表格。
 - **Gate**：上线前硬门槛校验，不过线就失败。
