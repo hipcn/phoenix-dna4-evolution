@@ -15,6 +15,17 @@
 This is a minimal reproducible project to validate one core idea:  
 **AI strategies can evolve automatically through selection, instead of manual tuning every time.**
 
+## 30-Second Plain-English Version
+
+Think of this project as a small “automatic strategy factory”:
+- You provide candidate strategies (DNA data).
+- It compares, eliminates, and evolves them.
+- It gates quality before deployment.
+- It exports runtime-ready artifacts (like `route_policy.env`).
+
+If you only do one thing:  
+run `validate` first, and only integrate when you see `Overall: PASS`.
+
 The project provides three capability layers:
 - **Research**: baselines, ablations, repeated statistics, and one-shot report generation.
 - **Gate**: hard pre-deployment checks that fail fast if quality is below threshold.
