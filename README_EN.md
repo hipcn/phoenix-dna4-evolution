@@ -30,6 +30,30 @@ Many “evolutionary AI” projects stop at concept demos. This project focuses 
 In one line:  
 **This is not just a nice idea, but a working self-optimization pipeline.**
 
+## Inspiration
+
+This project starts from a practical engineering pain point:  
+as Agent systems connect more models, tools, and routing rules, strategy search space explodes, while manual tuning becomes slower and less reliable.
+
+We wanted concrete answers to three questions:
+- Can we turn strategy tuning into strategy evolution, so the system searches better policies by itself?
+- Can we bind optimization results to hard gates, so underperforming policies never enter runtime paths?
+- Can we write back the best policy artifacts, so each run starts from the previous best point?
+
+PhoenixDNA is the minimal executable answer to these three questions.
+
+## Current Landscape
+
+Many current “evolutionary AI” projects still break at one of these points:
+- **Curves without admission criteria**: metrics look better, but no clear production gate.
+- **Notebook-only results**: hard to reproduce across machines, parameters, and datasets.
+- **Offline-only optimization**: best strategies are not directly consumable by runtime routing.
+
+PhoenixDNA addresses this by:
+- using `validate` mode as a hard gate with one-vote veto;
+- exporting structured artifacts (JSON/CSV/TEX/SVG) for reproducibility and auditability;
+- bridging experiment-to-runtime through `benchmark_route_policy.json` and `apply_route_policy.py`.
+
 ## Quick Start (3 Minutes)
 
 ### 1) Install dependencies
@@ -98,6 +122,73 @@ python -X utf8 value_case.py --input-dir . --output-dir out
 python -X utf8 render_gate_svg.py --input-dir . --output-dir out
 python -X utf8 apply_route_policy.py --input-dir . --output-dir out
 ```
+
+## How To Use This Project Quickly
+
+If you want practical value today, choose one of these three adoption paths:
+
+- **Path A: Gate-only integration (lowest effort)**  
+  Run this in your CI/CD pipeline:
+
+```bash
+python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternary_sample.json --limit 64 --sample-size 32 --mutation-rate 0.1 --repeats 1
+```
+
+  Rule: block deployment when exit code is non-zero.
+
+- **Path B: Strategy search + routing write-back (recommended)**  
+  Search best strategy first, then generate runtime route artifacts:
+
+```bash
+python -X utf8 dna_benchmark.py --mode evolution --dna-file phoenix_dna_quaternary_sample.json --limit 64 --generations 6 --population-size 24 --evolution-sample-size 32 --mutation-rate 0.08 --evolution-selection-ratio 0.25
+python -X utf8 apply_route_policy.py
+```
+
+  `route_policy.env` can be injected directly into your service environment.
+
+- **Path C: Business-facing value presentation (stakeholder-friendly)**  
+  Generate both value snapshot and visual gate evidence:
+
+```bash
+python -X utf8 value_case.py
+python -X utf8 render_gate_svg.py
+```
+
+  `business_value_case.json` + `gate_snapshot.svg` are ready for PRs, reviews, and weekly reports.
+
+## Operator-Friendly Fast Track
+
+If your team mostly uses tools and workflows (with minimal code changes), use this path:
+
+1) **Validate first (one command)**
+
+```bash
+python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternary_sample.json --limit 64 --sample-size 32 --mutation-rate 0.1 --repeats 1
+```
+
+Only continue when you see `Overall: PASS`.
+
+2) **Generate deployable route artifacts (one command)**
+
+```bash
+python -X utf8 apply_route_policy.py
+```
+
+Inject `route_policy.env` into your runtime environment variables.
+
+3) **Generate stakeholder-ready evidence (two commands)**
+
+```bash
+python -X utf8 value_case.py
+python -X utf8 render_gate_svg.py
+```
+
+You will get:
+- `business_value_case.json` for business summary
+- `gate_snapshot.svg` for visual gate evidence on repo landing pages
+
+Guiding principle:  
+**gate first, route second, presentation third.**
 
 ## Structure
 
