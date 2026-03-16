@@ -216,6 +216,20 @@ python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternar
 - 业务快照 `business_value_case.json`
 - 可视化证据图 `gate_snapshot.svg`
 
+## 跟“大龙虾”到底有什么关系
+
+一句话：  
+**PhoenixDNA 不是替代你的大龙虾，而是给大龙虾提供“更优的路由决策配置”。**
+
+你关心的大龙虾能力 | PhoenixDNA 提供的对应价值
+- 模型该怎么选 | 自动搜索更优策略，减少人工拍脑袋
+- 能不能放心上线 | `validate` 给出硬门禁（不过就拦截）
+- 怎么快速接入现有系统 | 输出 `route_policy.env`，可直接注入运行环境
+- 怎么证明这次优化有效 | 输出 `business_value_case.json` + `gate_snapshot.svg`
+
+最短理解：  
+你的大龙虾继续负责对话和执行，PhoenixDNA 负责“把路由策略持续优化并验证后再交给它”。
+
 ## 目录结构
 
 ```text
