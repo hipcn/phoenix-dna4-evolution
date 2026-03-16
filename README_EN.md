@@ -15,16 +15,23 @@
 This is a minimal reproducible project to validate one core idea:  
 **AI strategies can evolve automatically through selection, instead of manual tuning every time.**
 
-## 30-Second Plain-English Version
+## Fast Landing (3 Values + 1 Command)
 
-Think of this project as a small “automatic strategy factory”:
-- You provide candidate strategies (DNA data).
-- It compares, eliminates, and evolves them.
-- It gates quality before deployment.
-- It exports runtime-ready artifacts (like `route_policy.env`).
+- Auto-searches better routing strategies for your Lobster runtime
+- Enforces hard gate checks before deployment
+- Produces integration-ready and presentation-ready artifacts
 
-If you only do one thing:  
-run `validate` first, and only integrate when you see `Overall: PASS`.
+Copy & run (Windows PowerShell):
+
+```powershell
+python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternary_sample.json --limit 64 --sample-size 32 --mutation-rate 0.1 --repeats 1; if ($LASTEXITCODE -ne 0) { exit 1 }; python -X utf8 apply_route_policy.py; python -X utf8 value_case.py; python -X utf8 render_gate_svg.py
+```
+
+Result cards:
+- `Overall: PASS/FAIL`: deployment gate verdict
+- `route_policy.env`: Lobster-ready routing config
+- `business_value_case.json`: business impact snapshot
+- `gate_snapshot.svg`: visual gate evidence
 
 The project provides three capability layers:
 - **Research**: baselines, ablations, repeated statistics, and one-shot report generation.

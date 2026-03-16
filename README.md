@@ -15,16 +15,23 @@ English Version: [README_EN.md](README_EN.md)
 这是一个最小可复现项目，验证一件事：  
 **AI 策略可以像自然选择一样自动迭代，而不是每次都靠人工调参。**
 
-## 给普通使用者的 30 秒理解版
+## 首屏极速上手（3 行价值 + 1 条命令）
 
-把它当成一个“自动选最优方案”的小工厂：
-- 你提供一批候选策略（DNA 数据）。
-- 它自动比较、淘汰、进化，找出更优策略。
-- 它用门禁确认“是否可上线”。
-- 它把可用结果导出成你能直接接入的文件（如 `route_policy.env`）。
+- 给大龙虾自动搜索更优路由策略
+- 上线前强制门禁，不达标直接拦截
+- 产出可直接接入与可对外展示的结果文件
 
-如果你只做一件事：  
-先跑 `validate`，看到 `Overall: PASS` 再接入生产链路。
+复制即用（Windows PowerShell）：
+
+```powershell
+python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternary_sample.json --limit 64 --sample-size 32 --mutation-rate 0.1 --repeats 1; if ($LASTEXITCODE -ne 0) { exit 1 }; python -X utf8 apply_route_policy.py; python -X utf8 value_case.py; python -X utf8 render_gate_svg.py
+```
+
+结果卡片：
+- `Overall: PASS/FAIL`：是否允许上线
+- `route_policy.env`：可直接注入的大龙虾路由配置
+- `business_value_case.json`：业务价值快照
+- `gate_snapshot.svg`：可视化门禁证据图
 
 项目提供三层能力：
 - **Research**：基线、消融、重复统计，一次性产出报告与表格。
