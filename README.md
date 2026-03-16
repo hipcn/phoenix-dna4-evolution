@@ -15,6 +15,21 @@ English Version: [README_EN.md](README_EN.md)
 这是一个最小可复现项目，验证一件事：  
 **AI 策略可以像自然选择一样自动迭代，而不是每次都靠人工调参。**
 
+## DNA 和 4 的含义（跨学科灵感）
+
+- **DNA**：借用生物学里的“遗传编码”思想，把策略写成可继承、可变异、可选择的序列。
+- **4**：采用四进制编码（A/C/G/T），让“变异与组合”有稳定、离散、可追踪的操作空间。
+- **跨学科连接**：生物进化（选择机制）+ 信息编码（离散表示）+ 工程门禁（可上线判定）。
+- **工程意义**：不是把生物概念做比喻，而是把“编码→进化→门禁→回写”做成可执行流水线。
+
+### 为什么采用 4 进制
+
+- **关键原因（编码契合）**：生物 DNA 天然是 4 碱基系统（A/C/G/T），四进制可以做一一映射，不需要额外转码层。
+- **关键原因（规则契合）**：DNA 的互补配对是 A↔T、C↔G，四进制符号集可以直接表达这类互补/突变规则，进化算子更自然。
+- **为什么不是 2 进制**：会把一个碱基拆成多位 bit，语义被切碎，互补与突变规则要绕一层映射，解释和调试成本更高。
+- **为什么不是 3 进制**：与 4 碱基不等基数，必然出现“缺一态或补一态”问题，编码与生物语义无法严格对齐。
+- **工程收益**：保持 DNA 语义直通到代码层，便于做可解释进化、可审计回放和跨实验复现。
+
 ## 首屏极速上手（3 行价值 + 1 条命令）
 
 - 给大龙虾自动搜索更优路由策略
@@ -74,6 +89,14 @@ python -X utf8 render_gate_svg.py
 - `Speedup: 11.0549x`
 - `Latency Reduction: 90.95%`
 - `gate_snapshot.svg`（可直接贴在仓库首页或汇报文档）
+
+## 卡片式速览（1 图 + 1 命令 + 1 结果）
+
+| 场景 | 1 图 | 1 命令 | 1 结果 |
+|---|---|---|---|
+| 发布前门禁 | `gate_snapshot.svg` | `python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternary_sample.json --limit 64 --sample-size 32 --mutation-rate 0.1 --repeats 1` | `Overall: PASS` |
+| 运行时接入 | `route_policy_summary.json` | `python -X utf8 apply_route_policy.py` | `Route: ollama/qwen2.5:latest` |
+| 汇报展示 | `business_value_case.json` | `python -X utf8 value_case.py` | `Speedup: 11.0549x` |
 
 项目提供三层能力：
 - **Research**：基线、消融、重复统计，一次性产出报告与表格。

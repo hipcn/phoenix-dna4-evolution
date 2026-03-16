@@ -15,6 +15,21 @@
 This is a minimal reproducible project to validate one core idea:  
 **AI strategies can evolve automatically through selection, instead of manual tuning every time.**
 
+## What “DNA” and “4” Mean (Cross-Disciplinary Spark)
+
+- **DNA**: borrows the genetic-encoding idea from biology, representing strategies as inheritable, mutable, selectable sequences.
+- **4**: uses quaternary symbols (A/C/G/T), giving mutation and recombination a stable, discrete, and auditable state space.
+- **Cross-discipline bridge**: evolutionary biology (selection) + information encoding (discrete representation) + engineering gates (deployment readiness).
+- **Engineering value**: not just metaphor — it operationalizes “encode → evolve → gate → write back” into a runnable loop.
+
+### Why Quaternary Encoding
+
+- **Core reason (encoding fit)**: biological DNA is natively a 4-base system (A/C/G/T), so quaternary gives a direct one-to-one mapping without extra translation layers.
+- **Core reason (rule fit)**: Watson-Crick pairing is A↔T and C↔G; a 4-symbol alphabet can encode complement/mutation rules directly and naturally.
+- **Why not binary (2)**: each base must be split into multiple bits, which fragments biological semantics and adds mapping overhead for complement/mutation logic.
+- **Why not ternary (3)**: base cardinality mismatches DNA (4), forcing missing/extra-state workarounds and breaking strict semantic alignment.
+- **Engineering payoff**: DNA semantics stay intact from representation to operator design, improving explainability, replayability, and reproducibility.
+
 ## Fast Landing (3 Values + 1 Command)
 
 - Auto-searches better routing strategies for your Lobster runtime
@@ -74,6 +89,14 @@ You will get (real sample):
 - `Speedup: 11.0549x`
 - `Latency Reduction: 90.95%`
 - `gate_snapshot.svg` (ready for repo landing page or report decks)
+
+## Card View (1 Visual + 1 Command + 1 Outcome)
+
+| Scenario | 1 Visual | 1 Command | 1 Outcome |
+|---|---|---|---|
+| Pre-release gate | `gate_snapshot.svg` | `python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternary_sample.json --limit 64 --sample-size 32 --mutation-rate 0.1 --repeats 1` | `Overall: PASS` |
+| Runtime injection | `route_policy_summary.json` | `python -X utf8 apply_route_policy.py` | `Route: ollama/qwen2.5:latest` |
+| Stakeholder report | `business_value_case.json` | `python -X utf8 value_case.py` | `Speedup: 11.0549x` |
 
 The project provides three capability layers:
 - **Research**: baselines, ablations, repeated statistics, and one-shot report generation.
