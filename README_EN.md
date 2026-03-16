@@ -134,76 +134,14 @@ python -X utf8 render_gate_svg.py --input-dir . --output-dir out
 python -X utf8 apply_route_policy.py --input-dir . --output-dir out
 ```
 
-## How To Use This Project Quickly
+## TL;DR (for Lobster Operators)
 
-If you want practical value today, choose one of these three adoption paths:
+Your Lobster system handles conversation and execution. PhoenixDNA handles:
+- strategy optimization,
+- production gate checks,
+- and runtime-ready policy artifacts.
 
-- **Path A: Gate-only integration (lowest effort)**  
-  Run this in your CI/CD pipeline:
-
-```bash
-python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternary_sample.json --limit 64 --sample-size 32 --mutation-rate 0.1 --repeats 1
-```
-
-  Rule: block deployment when exit code is non-zero.
-
-- **Path B: Strategy search + routing write-back (recommended)**  
-  Search best strategy first, then generate runtime route artifacts:
-
-```bash
-python -X utf8 dna_benchmark.py --mode evolution --dna-file phoenix_dna_quaternary_sample.json --limit 64 --generations 6 --population-size 24 --evolution-sample-size 32 --mutation-rate 0.08 --evolution-selection-ratio 0.25
-python -X utf8 apply_route_policy.py
-```
-
-  `route_policy.env` can be injected directly into your service environment.
-
-- **Path C: Business-facing value presentation (stakeholder-friendly)**  
-  Generate both value snapshot and visual gate evidence:
-
-```bash
-python -X utf8 value_case.py
-python -X utf8 render_gate_svg.py
-```
-
-  `business_value_case.json` + `gate_snapshot.svg` are ready for PRs, reviews, and weekly reports.
-
-## Operator-Friendly Fast Track
-
-If your team mostly uses tools and workflows (with minimal code changes), use this path:
-
-1) **Validate first (one command)**
-
-```bash
-python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternary_sample.json --limit 64 --sample-size 32 --mutation-rate 0.1 --repeats 1
-```
-
-Only continue when you see `Overall: PASS`.
-
-2) **Generate deployable route artifacts (one command)**
-
-```bash
-python -X utf8 apply_route_policy.py
-```
-
-Inject `route_policy.env` into your runtime environment variables.
-
-3) **Generate stakeholder-ready evidence (two commands)**
-
-```bash
-python -X utf8 value_case.py
-python -X utf8 render_gate_svg.py
-```
-
-You will get:
-- `business_value_case.json` for business summary
-- `gate_snapshot.svg` for visual gate evidence on repo landing pages
-
-Guiding principle:  
-**gate first, route second, presentation third.**
-
-## One-Command Integration (Copy & Run)
-
-For practical users, copy one command and get immediate visible outputs.
+## One-Command Integration (Immediate Results)
 
 Windows PowerShell:
 
@@ -217,11 +155,24 @@ macOS / Linux:
 python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternary_sample.json --limit 64 --sample-size 32 --mutation-rate 0.1 --repeats 1 && python -X utf8 apply_route_policy.py && python -X utf8 value_case.py && python -X utf8 render_gate_svg.py
 ```
 
-You immediately get:
-- gate result in terminal (`Overall: PASS/FAIL`)
-- deployable artifact `route_policy.env`
+Immediate outputs:
+- gate verdict (`Overall: PASS/FAIL`)
+- deployable `route_policy.env`
 - business snapshot `business_value_case.json`
-- visual evidence `gate_snapshot.svg`
+- visual proof `gate_snapshot.svg`
+
+## Direct Mapping to Lobster Value
+
+- Need better model/tool routing → PhoenixDNA searches better strategies  
+- Need safe deployment → `validate` acts as hard gate  
+- Need fast integration → `apply_route_policy.py` exports `route_policy.env`  
+- Need proof for stakeholders → `value_case.py` + `render_gate_svg.py`
+
+## Adoption Modes (low to high effort)
+
+- **Gate-only**: integrate `validate` into CI
+- **Gate + Route**: run `evolution + apply_route_policy`
+- **Full**: add `value_case + render_gate_svg` for reporting
 
 ## Structure
 

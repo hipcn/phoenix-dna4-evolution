@@ -127,76 +127,14 @@ python -X utf8 render_gate_svg.py --input-dir . --output-dir out
 python -X utf8 apply_route_policy.py --input-dir . --output-dir out
 ```
 
-## 如何快速利用这个项目
+## TL;DR（给大龙虾使用者）
 
-如果你只想“今天就接上去”，按下面三种模式选一种：
+你的大龙虾负责对话与执行；PhoenixDNA 负责三件事：
+- 找更优路由策略
+- 用门禁判断是否可上线
+- 产出可直接注入的大龙虾配置
 
-- **模式 A：只做上线门禁（最低接入成本）**  
-  在你的 CI/CD 里运行：
-
-```bash
-python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternary_sample.json --limit 64 --sample-size 32 --mutation-rate 0.1 --repeats 1
-```
-
-  规则：命令返回非 0 就阻断发布。
-
-- **模式 B：做策略搜索 + 路由回写（推荐）**  
-  先搜索最优策略，再生成运行时路由：
-
-```bash
-python -X utf8 dna_benchmark.py --mode evolution --dna-file phoenix_dna_quaternary_sample.json --limit 64 --generations 6 --population-size 24 --evolution-sample-size 32 --mutation-rate 0.08 --evolution-selection-ratio 0.25
-python -X utf8 apply_route_policy.py
-```
-
-  产物 `route_policy.env` 可直接注入你的服务环境变量。
-
-- **模式 C：做管理层可见的价值展示（汇报友好）**  
-  自动生成业务快照 + 可视化图：
-
-```bash
-python -X utf8 value_case.py
-python -X utf8 render_gate_svg.py
-```
-
-  产物 `business_value_case.json` + `gate_snapshot.svg` 可直接用于 PR、周报和评审会。
-
-## 龙虾使用者快速上手
-
-如果你是“以工具为主、少改代码”的使用者，建议直接走这条路径：
-
-1) **先验证可用性（1 条命令）**
-
-```bash
-python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternary_sample.json --limit 64 --sample-size 32 --mutation-rate 0.1 --repeats 1
-```
-
-看到 `Overall: PASS` 再继续下一步。
-
-2) **再产出可落地策略（1 条命令）**
-
-```bash
-python -X utf8 apply_route_policy.py
-```
-
-拿到 `route_policy.env` 后，直接注入你的运行环境变量。
-
-3) **最后做对外展示（2 条命令）**
-
-```bash
-python -X utf8 value_case.py
-python -X utf8 render_gate_svg.py
-```
-
-你会得到：
-- `business_value_case.json`（业务指标摘要，适合汇报）
-- `gate_snapshot.svg`（可视化证据图，适合放在仓库首页）
-
-这条路径的核心思路是：  
-**先过门禁，再接路由，最后补展示。**
-
-## 一键集成（复制即用）
-
-普通使用者可以直接复制这一条命令，跑完就能看到效果与产物。
+## 一键集成（马上看到效果）
 
 Windows PowerShell：
 
@@ -210,25 +148,24 @@ macOS / Linux：
 python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternary_sample.json --limit 64 --sample-size 32 --mutation-rate 0.1 --repeats 1 && python -X utf8 apply_route_policy.py && python -X utf8 value_case.py && python -X utf8 render_gate_svg.py
 ```
 
-完成后你会马上看到：
-- 门禁结果（终端 `Overall: PASS/FAIL`）
-- 可接入产物 `route_policy.env`
-- 业务快照 `business_value_case.json`
-- 可视化证据图 `gate_snapshot.svg`
+跑完立即得到：
+- `Overall: PASS/FAIL`（门禁结论）
+- `route_policy.env`（可直接接入）
+- `business_value_case.json`（业务效果）
+- `gate_snapshot.svg`（可视化证据）
 
-## 跟“大龙虾”到底有什么关系
+## 和大龙虾的直接映射
 
-一句话：  
-**PhoenixDNA 不是替代你的大龙虾，而是给大龙虾提供“更优的路由决策配置”。**
+- 大龙虾要选模型 / 选工具 → PhoenixDNA 自动搜索策略  
+- 大龙虾要稳定上线 → `validate` 给硬门禁  
+- 大龙虾要快速接入 → `apply_route_policy.py` 产出 `route_policy.env`  
+- 大龙虾要对外证明优化有效 → `value_case.py` + `render_gate_svg.py` 产出证据
 
-你关心的大龙虾能力 | PhoenixDNA 提供的对应价值
-- 模型该怎么选 | 自动搜索更优策略，减少人工拍脑袋
-- 能不能放心上线 | `validate` 给出硬门禁（不过就拦截）
-- 怎么快速接入现有系统 | 输出 `route_policy.env`，可直接注入运行环境
-- 怎么证明这次优化有效 | 输出 `business_value_case.json` + `gate_snapshot.svg`
+## 三种接入模式（按投入从低到高）
 
-最短理解：  
-你的大龙虾继续负责对话和执行，PhoenixDNA 负责“把路由策略持续优化并验证后再交给它”。
+- **Gate-only**：只接 `validate`，用于 CI 阻断低质量策略
+- **Gate + Route**：`evolution + apply_route_policy`，用于生产策略迭代
+- **Full**：再加 `value_case + render_gate_svg`，用于汇报和评审
 
 ## 目录结构
 
