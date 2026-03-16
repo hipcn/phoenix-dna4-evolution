@@ -194,6 +194,28 @@ python -X utf8 render_gate_svg.py
 这条路径的核心思路是：  
 **先过门禁，再接路由，最后补展示。**
 
+## 一键集成（复制即用）
+
+普通使用者可以直接复制这一条命令，跑完就能看到效果与产物。
+
+Windows PowerShell：
+
+```powershell
+python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternary_sample.json --limit 64 --sample-size 32 --mutation-rate 0.1 --repeats 1; if ($LASTEXITCODE -ne 0) { exit 1 }; python -X utf8 apply_route_policy.py; python -X utf8 value_case.py; python -X utf8 render_gate_svg.py
+```
+
+macOS / Linux：
+
+```bash
+python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternary_sample.json --limit 64 --sample-size 32 --mutation-rate 0.1 --repeats 1 && python -X utf8 apply_route_policy.py && python -X utf8 value_case.py && python -X utf8 render_gate_svg.py
+```
+
+完成后你会马上看到：
+- 门禁结果（终端 `Overall: PASS/FAIL`）
+- 可接入产物 `route_policy.env`
+- 业务快照 `business_value_case.json`
+- 可视化证据图 `gate_snapshot.svg`
+
 ## 目录结构
 
 ```text

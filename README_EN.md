@@ -201,6 +201,28 @@ You will get:
 Guiding principle:  
 **gate first, route second, presentation third.**
 
+## One-Command Integration (Copy & Run)
+
+For practical users, copy one command and get immediate visible outputs.
+
+Windows PowerShell:
+
+```powershell
+python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternary_sample.json --limit 64 --sample-size 32 --mutation-rate 0.1 --repeats 1; if ($LASTEXITCODE -ne 0) { exit 1 }; python -X utf8 apply_route_policy.py; python -X utf8 value_case.py; python -X utf8 render_gate_svg.py
+```
+
+macOS / Linux:
+
+```bash
+python -X utf8 dna_benchmark.py --mode validate --dna-file phoenix_dna_quaternary_sample.json --limit 64 --sample-size 32 --mutation-rate 0.1 --repeats 1 && python -X utf8 apply_route_policy.py && python -X utf8 value_case.py && python -X utf8 render_gate_svg.py
+```
+
+You immediately get:
+- gate result in terminal (`Overall: PASS/FAIL`)
+- deployable artifact `route_policy.env`
+- business snapshot `business_value_case.json`
+- visual evidence `gate_snapshot.svg`
+
 ## Structure
 
 ```text
